@@ -18,6 +18,6 @@ public class HomeView {
     public HomeView(){
         ViewUtil viewUtil = new ViewUtil();
 
-        MyScene = viewUtil.getScene("/views/home/Home.fxml", new HomeController());
+        this.MyScene = viewUtil.getScene("/views/home/Home.fxml", new HomeController());
     }
 }
