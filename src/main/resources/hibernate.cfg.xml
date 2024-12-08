@@ -1,0 +1,18 @@
+<hibernate-configuration>
+    <session-factory>
+        <!-- Configuración de conexión -->
+        <property name="hibernate.connection.driver_class">org.sqlite.JDBC</property>
+        <property name="hibernate.connection.url">jdbc:sqlite:./src/main/resources/db/JPetsData.db</property>
+
+        <!-- Configuración de Hibernate -->
+        <property name="hibernate.hbm2ddl.auto">update</property> <!-- update, create, create-drop -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        
+        <mapping class="com.jpets.models.StoreEntity"/>
+        <mapping class="com.jpets.models.PetEntity"/>
+        <mapping class="com.jpets.models.ProductEntity"/> 
+        
+    </session-factory>
+</hibernate-configuration>

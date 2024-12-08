@@ -1,9 +1,11 @@
 package com.jpets;
 
-import com.jpets.home.HomeView;
+import com.jpets.config.SQLiteConnection;
 import com.jpets.utils.ViewUtil;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -18,10 +20,12 @@ public class MainApp extends Application{
     }
 
     @Override
-    public void start(Stage stage) throws Exception {        
+    public void start(Stage stage) throws Exception {  
+        
+        //Se conecta a la DB
+        SQLiteConnection.connect();
 
-        HomeView homeView = new HomeView();
-        Scene scene = homeView.getMyScene();
+        Parent root = FXMLLoader.load(getClass().getResource("/views/home/Home.fxml"));
         
         //Obtenemos el tamaño de la pantalla
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -39,7 +43,7 @@ public class MainApp extends Application{
         stage.setX(centerPosition.get("x"));
         stage.setY(centerPosition.get("y"));
         stage.setTitle("JPets");
-        stage.setScene(scene);
+        stage.setScene(new Scene(root));
         stage.show();
     }
 }
