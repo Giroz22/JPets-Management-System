@@ -153,4 +153,28 @@ public abstract class GenericRepository<T, ID> {
 
         HibernateUtil.closeSession();
     }
+
+    public void deleteT(T entityDelete){
+        Session session = HibernateUtil.openSession();
+        Transaction transaction = null;
+        
+        try {
+            //Antes de la transaccion
+            transaction = session.beginTransaction();
+
+            //Se elimina
+            if(entityDelete != null) session.remove(entityDelete);
+
+            //Confirmar transaccion
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+
+        HibernateUtil.closeSession();
+    }
 }

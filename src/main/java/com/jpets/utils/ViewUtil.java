@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -47,5 +48,19 @@ public class ViewUtil {
         position.put("y", (screenHeight - viewHeight) / 2);
 
         return position;
+    }
+
+    public Node getNodeFXML(String urlFXML, Object controller){        
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(urlFXML));
+
+            loader.setController(controller);        
+
+            return loader.load();        
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

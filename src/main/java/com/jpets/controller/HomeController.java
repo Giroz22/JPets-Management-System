@@ -3,6 +3,7 @@ package com.jpets.controller;
 import com.jpets.models.StoreEntity;
 import com.jpets.repository.StoreRepository;
 import com.jpets.service.StoreService;
+import com.jpets.utils.ViewUtil;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -12,10 +13,13 @@ import javafx.scene.layout.VBox;
 
 public class HomeController {
 
-    StoreService storeService;
+    private StoreService storeService;
+
+    private ViewUtil viewUtil;
 
     public HomeController(){
-        this.storeService = new StoreService(new StoreRepository());    
+        this.storeService = new StoreService(new StoreRepository());  
+        this.viewUtil = new ViewUtil();
     }
 
     @FXML
@@ -38,11 +42,24 @@ public class HomeController {
         //En base al tab se muestra una vista u otra
         tabPane.getSelectionModel().selectedItemProperty().addListener((observable, oldTab, newTab) -> {
             if(newTab != null){     
-                VBox vbox = new VBox();
-                vbox.getChildren().addAll(
-                    new Label("Bienvenido a " + store.getName() + ", desde la" + newTab.getText())
-                );
-                newTab.setContent(vbox);
+                switch (newTab.getId()) {
+                    case "petsTab":                        
+                        newTab.setContent(
+                            viewUtil.getNodeFXML("/views/pets/Pets.fxml", new PetController())
+                        );                        
+                        break;
+
+                    case "storeTab":
+                        newTab.setContent(
+                            new Label("Estamos en tienda")
+                        );
+
+                        break;
+                
+                    default:
+                        newTab.setContent(new Label("Sin datos"));
+                        break;
+                }
             }
         });
     }
