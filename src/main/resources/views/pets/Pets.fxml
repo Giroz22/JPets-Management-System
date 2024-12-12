@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:id="petPane"/>
+<Pane fx:id="petPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="400.0" prefWidth="600.0" style="-fx-min-width: 100%; -fx-min-height: 100%;">
+         <children>
+            <TableView fx:id="tableData" prefHeight="412.0" prefWidth="600.0" />
+            <ButtonBar prefHeight="80.0" prefWidth="600.0" style="-fx-padding: 10;">
+              <buttons>
+                <Button fx:id="showCreateButton" mnemonicParsing="false" onAction="#showFormCreate" text="Agregar" />
+              </buttons>
+            </ButtonBar>
+         </children>
+      </VBox>
+   </children>
+</Pane>

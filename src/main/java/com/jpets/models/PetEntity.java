@@ -22,7 +22,7 @@ import lombok.Setter;
 @Builder
 public class PetEntity {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.UUID)
   private String id;
   private String name;
   private String picture;

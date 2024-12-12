@@ -2,43 +2,58 @@ package com.jpets.service;
 
 import java.util.List;
 
+import com.jpets.controller.dtos.request.PetRequests;
+import com.jpets.controller.dtos.response.PetResponse;
 import com.jpets.exceptions.IdNotFoundException;
 import com.jpets.models.PetEntity;
 import com.jpets.repository.PetRepository;
+import com.jpets.repository.StoreRepository;
 import com.jpets.service.abstract_service.IPetService;
+import com.jpets.utils.mappers.PetMapper;
 
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class PetService implements IPetService {
-    PetRepository petRepository;
+    private PetRepository petRepository;
+    private StoreService storeService;
 
     public PetService(){
         this.petRepository = new PetRepository();
+        this.storeService = new StoreService(new StoreRepository());
     }
 
     @Override
-    public PetEntity create(PetEntity pet) {
+    public PetResponse create(PetRequests request) {
+        PetEntity pet = PetMapper.INSTANCE.requestToEntity(request);
+
+        pet.setPicture("");
+        pet.setStore(this.storeService.getStore());
+
         PetEntity newPet = petRepository.create(pet);
 
-        return newPet;
+        return PetMapper.INSTANCE.entityToResponse(newPet);
     }
 
     @Override
-    public List<PetEntity> getAll() {
-        return petRepository.getAll();
+    public List<PetResponse> getAll() {
+        return PetMapper.INSTANCE.entityToResponse(petRepository.getAll());
     }
 
     @Override
-    public PetEntity getById(String id) throws IdNotFoundException{        
-        return findPet(id);
+    public PetResponse getById(String id) throws IdNotFoundException{        
+        return PetMapper.INSTANCE.entityToResponse(findPet(id));
     }
 
     @Override
-    public PetEntity update(PetEntity entityUpdate, String id) throws IdNotFoundException{
+    public PetResponse update(PetRequests request, String id) throws IdNotFoundException{
+        PetEntity petUpdate = PetMapper.INSTANCE.requestToEntity(request);
+        
         findPet(id);
 
-        return petRepository.update(entityUpdate);
+        PetEntity petUpdated = petRepository.update(petUpdate);
+
+        return PetMapper.INSTANCE.entityToResponse(petUpdated);
     }
 
     @Override

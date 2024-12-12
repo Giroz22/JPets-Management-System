@@ -1,5 +1,5 @@
 package com.jpets.service.abstract_service.CRUD;
 
-public interface IGetById<T,ID> {
-    public T getById(ID id);
+public interface IGetById<RS,ID> {
+    public RS getById(ID id);
 }

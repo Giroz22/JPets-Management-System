@@ -32,13 +32,13 @@ public abstract class GenericRepository<T, ID> {
 
         } catch (Exception e) {
             if(transaction != null) transaction.rollback();
-
+            //Cambiar por alertas            
+            System.out.println("=======================Error al guardar=======================");
+            System.out.println(e.getMessage());
             e.printStackTrace();
         }finally{
             session.close();
         }
-
-        HibernateUtil.closeSession();
 
         return entity;
     }
@@ -64,8 +64,6 @@ public abstract class GenericRepository<T, ID> {
         }finally{
             session.close();
         }
-
-        HibernateUtil.closeSession();
 
         return entity;
     }
@@ -95,7 +93,6 @@ public abstract class GenericRepository<T, ID> {
             session.close();
         }
 
-        HibernateUtil.closeSession();
         return entities;
     }
 
@@ -121,9 +118,7 @@ public abstract class GenericRepository<T, ID> {
             e.printStackTrace();
         }finally{
             session.close();
-        }
-
-        HibernateUtil.closeSession();
+        }        
         return entityUpdated;
     }
 
@@ -151,7 +146,6 @@ public abstract class GenericRepository<T, ID> {
             session.close();
         }
 
-        HibernateUtil.closeSession();
     }
 
     public void deleteT(T entityDelete){
@@ -175,6 +169,5 @@ public abstract class GenericRepository<T, ID> {
             session.close();
         }
 
-        HibernateUtil.closeSession();
     }
 }

@@ -1,5 +1,5 @@
 package com.jpets.service.abstract_service.CRUD;
 
-public interface ICreate<T> {
-    public T create(T entity);
+public interface ICreate<RQ,RS> {
+    public RS create(RQ request);
 }
