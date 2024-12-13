@@ -12,6 +12,8 @@ import lombok.Setter;
 @Setter
 @Builder
 public class PetResponse {
+    private String id;
     private String name;
     private String ownerName;
+    private String pictureUrl;
 }

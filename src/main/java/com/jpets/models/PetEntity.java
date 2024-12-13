@@ -25,7 +25,7 @@ public class PetEntity {
   @GeneratedValue(strategy = GenerationType.UUID)
   private String id;
   private String name;
-  private String picture;
+  private String pictureUrl;
   private String ownerName;
 
   @ManyToOne

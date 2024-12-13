@@ -27,7 +27,6 @@ public class PetService implements IPetService {
     public PetResponse create(PetRequests request) {
         PetEntity pet = PetMapper.INSTANCE.requestToEntity(request);
 
-        pet.setPicture("");
         pet.setStore(this.storeService.getStore());
 
         PetEntity newPet = petRepository.create(pet);

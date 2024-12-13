@@ -17,19 +17,24 @@ public class MainApp extends Application{
     }
 
     @Override
-    public void start(Stage stage) throws Exception {  
-        
-        //Se conecta a la DB
-        SQLiteConnection.connect();
+    public void start(Stage stage) {  
+        try{
 
-        Parent root = FXMLLoader.load(getClass().getResource("/views/home/Home.fxml"));
+            //Se conecta a la DB
+            SQLiteConnection.connect();
 
-        //Obtenemos los valores que debe tener la pantalla para estar centrada
-        ViewUtil.centerStageAndSetSize(stage, 80, 80); 
+            Parent root = FXMLLoader.load(getClass().getResource("/views/home/Home.fxml"));
+
+            //Obtenemos los valores que debe tener la pantalla para estar centrada
+            ViewUtil.centerStageAndSetSize(stage, 80, 80); 
+            
+            stage.setTitle("JPets");
+            stage.setScene(new Scene(root));
+            stage.show();
         
-        stage.setTitle("JPets");
-        stage.setScene(new Scene(root));
-        stage.show();
+        } catch (Exception e) {
+            ViewUtil.showErrorAlert("Error al ejecutar la aplicacion", e.getMessage());
+        }   
     }
 
     @Override

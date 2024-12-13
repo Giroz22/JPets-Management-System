@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import lombok.NoArgsConstructor;
 
@@ -75,7 +77,16 @@ public class ViewUtil {
     }
 
     //Continuar y ponerle a los repositorios
-    public static void createAlert(String msj){
+    public static void showAlert(String title, String headerText, String msj, AlertType alertType){
+        // Crear y mostrar una alerta de tipo INFORMACION
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);  // Cabecera opcional
+        alert.setContentText(msj);
+        alert.showAndWait(); 
+    }
 
+    public static void showErrorAlert(String headerText, String msj){
+        showAlert("Error", headerText, msj, AlertType.ERROR);
     }
 }

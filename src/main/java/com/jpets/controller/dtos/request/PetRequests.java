@@ -14,4 +14,5 @@ import lombok.Setter;
 public class PetRequests {
     private String name;
     private String ownerName;
+    private String pictureUrl;
 }
