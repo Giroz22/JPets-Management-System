@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
-import com.jpets.controller.dtos.response.PetResponse;
-import com.jpets.models.PetEntity;
+import com.jpets.app.dtos.response.PetResponse;
+import com.jpets.domain.models.PetEntity;
 import com.jpets.utils.mappers.PetMapper;
 
 public class PetMapperTest {
